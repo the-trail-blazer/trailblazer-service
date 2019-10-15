@@ -10,4 +10,5 @@ public class TrailblazerServiceApplication {
     SpringApplication.run(TrailblazerServiceApplication.class, args);
   }
 
+
 }
