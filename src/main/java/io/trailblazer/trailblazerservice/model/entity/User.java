@@ -13,14 +13,13 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
-@Entity(name = "user_blazer")
+@Entity(name = "user")
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "user_id", updatable = false, nullable = false)
   private Long id;
-
 
   @CreationTimestamp
   @NonNull
