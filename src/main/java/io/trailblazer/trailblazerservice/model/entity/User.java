@@ -1,5 +1,6 @@
 package io.trailblazer.trailblazerservice.model.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -28,7 +29,7 @@ public class User {
   private Date created;
 
   @OneToMany(mappedBy = "trail")
-  private List<Trail> authored;
+  private List<Trail> authored = new ArrayList<>();
 
   public List<Trail> getAuthored() {
     return authored;
