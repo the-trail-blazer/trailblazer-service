@@ -34,12 +34,56 @@ public class Trail {
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
   private User creator;
 
+  @Column(nullable = false, updatable = true, name = "trail_name")
+  private String name;
+
+  @Column
+  private String description;
+
+  @Column
+  private float rating;
+
+  @Column
+  private String photourl;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public float getRating() {
+    return rating;
+  }
+
+  public void setRating(float rating) {
+    this.rating = rating;
+  }
+
+  public String getPhotourl() {
+    return photourl;
+  }
+
+  public void setPhotourl(String photourl) {
+    this.photourl = photourl;
+  }
+
   public boolean isPublic() {
     return isPublic;
   }
 
-  public void setPublic(boolean aPublic) {
-    isPublic = aPublic;
+  public void setPublic(boolean Public) {
+    isPublic = Public;
   }
 
   public User getCreator() {
