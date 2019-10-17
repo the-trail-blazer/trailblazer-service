@@ -23,7 +23,6 @@ public class User {
   @Column(name = "user_id", updatable = false, nullable = false)
   private Long id;
 
-
   @CreationTimestamp
   @NonNull
   @Temporal(TemporalType.TIMESTAMP)
