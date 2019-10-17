@@ -34,7 +34,7 @@ public class Trail {
   @CreationTimestamp
   @NonNull
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(updatable = false)
+  @Column(name = "date_created", updatable = false)
   private Date created;
 
 

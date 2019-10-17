@@ -18,7 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
 @Entity(name = "user_info")
-@Table(uniqueConstraints = {  @UniqueConstraint(columnNames = {"username"}),
+@Table(uniqueConstraints = {  @UniqueConstraint(columnNames = {"user_name"}),
                               @UniqueConstraint(columnNames = {"oauth"}),
                               @UniqueConstraint(columnNames = {"email"}) },
         indexes = {@Index(columnList = "created"), @Index(columnList = "user_name")})
@@ -35,6 +35,7 @@ public class User {
   @Column(updatable = false, nullable = false)
   private Date created;
 
+  @Column(name = "user_name")
   private String userName;
 
   private String oauth;
