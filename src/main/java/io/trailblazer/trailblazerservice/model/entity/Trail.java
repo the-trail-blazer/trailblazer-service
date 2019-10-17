@@ -35,7 +35,7 @@ public class Trail {
 
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "user_id", nullable = true, updatable = false)
+  @JoinColumn(name = "user_id", updatable = false)
   private User creator;
 
   @Column(nullable = false, updatable = true)
