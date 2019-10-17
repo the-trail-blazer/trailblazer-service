@@ -26,7 +26,7 @@ public class Grant {
   private Long id;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "user_id", updatable = false)
+  @JoinColumn(name = "grantee_id", updatable = false)
   private User grantee;
 
   @ManyToOne(fetch = FetchType.EAGER)

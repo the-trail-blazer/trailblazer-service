@@ -37,7 +37,7 @@ public class User {
 
   private String userName;
 
-  private String oAuth;
+  private String oauth;
   private String email;
 
   @OneToMany(mappedBy = "creator")
@@ -67,12 +67,12 @@ public class User {
     this.userName = userName;
   }
 
-  public String getoAuth() {
-    return oAuth;
+  public String getOauth() {
+    return oauth;
   }
 
-  public void setoAuth(String oAuth) {
-    this.oAuth = oAuth;
+  public void setOauth(String oauth) {
+    this.oauth = oauth;
   }
 
   public String getEmail() {

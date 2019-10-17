@@ -19,7 +19,7 @@ import org.springframework.lang.NonNull;
 
 @Entity
 @Table(
-    indexes = @Index(columnList ="date_created")
+    indexes = @Index(columnList ="created")
 )
 public class Trail {
 
@@ -39,7 +39,7 @@ public class Trail {
 
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "user_id", updatable = false)
+  @JoinColumn(name = "creator_id", updatable = false)
   private User creator;
 
   @Column(nullable = false, updatable = true)
@@ -47,7 +47,6 @@ public class Trail {
 
   private String description;
 
-  private Float rating;
 
   private String imageUrl;
 
@@ -65,14 +64,6 @@ public class Trail {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public Float getRating() {
-    return rating;
-  }
-
-  public void setRating(Float rating) {
-    this.rating = rating;
   }
 
   public Long getId() {
