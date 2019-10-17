@@ -13,7 +13,7 @@ public class Grant {
 
   @NonNull
   @Column(name = "grant_id", nullable = false, unique = true)
-  private String id;
+  private Long id;
 
   @CreationTimestamp
   @NonNull
@@ -21,7 +21,7 @@ public class Grant {
   @Column(updatable = false, nullable = false)
   private Date created;
 
-  public String getId() {
+  public Long getId() {
     return id;
   }
 

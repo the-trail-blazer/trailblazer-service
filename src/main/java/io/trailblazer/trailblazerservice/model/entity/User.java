@@ -15,6 +15,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
 @Entity(name = "user_info")
+
 public class User {
 
   @Id

@@ -19,7 +19,7 @@ public class Trail {
   @NonNull
   @Id
   @Column(name = "trail_id", nullable = false, unique = true)
-  private String id;
+  private Long id;
 
   @Column(name = "public")
   private boolean isPublic;
@@ -68,7 +68,7 @@ public class Trail {
     this.rating = rating;
   }
 
-  public String getId() {
+  public Long getId() {
     return id;
   }
 
