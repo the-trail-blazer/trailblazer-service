@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
-@Entity(name = "user")
+@Entity(name = "user_info")
 public class User {
 
   @Id
@@ -28,7 +28,7 @@ public class User {
   @Column(updatable = false, nullable = false)
   private Date created;
 
-  @OneToMany(mappedBy = "trail")
+  @OneToMany(mappedBy = "creator")
   private List<Trail> authored = new ArrayList<>();
 
   public List<Trail> getAuthored() {
