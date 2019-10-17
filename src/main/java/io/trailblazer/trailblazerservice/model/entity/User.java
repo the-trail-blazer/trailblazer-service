@@ -23,11 +23,14 @@ public class User {
   @Column(name = "user_id", updatable = false, nullable = false)
   private Long id;
 
+
   @CreationTimestamp
   @NonNull
   @Temporal(TemporalType.TIMESTAMP)
   @Column(updatable = false, nullable = false)
   private Date created;
+
+  private String email;
 
   @OneToMany(mappedBy = "creator")
   private List<Trail> authored = new ArrayList<>();
