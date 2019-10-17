@@ -18,11 +18,11 @@ public class Content {
   private Long id;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "user_id", nullable = true, updatable = false)
+  @JoinColumn(name = "user_id", updatable = false)
   private User creator;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "trail_id", nullable = true, updatable = false)
+  @JoinColumn(name = "trail_id", updatable = false)
   private Trail trail;
 
   private String imageUrl;

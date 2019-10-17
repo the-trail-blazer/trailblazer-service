@@ -24,13 +24,12 @@ public class Trail {
   @Column(name = "trail_id", nullable = false, unique = true)
   private Long id;
 
-  @Column(name = "public")
-  private boolean isPublic;
+  private boolean trailPublic;
 
   @CreationTimestamp
   @NonNull
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(updatable = false, nullable = false)
+  @Column(updatable = false)
   private Date created;
 
 
@@ -63,11 +62,11 @@ public class Trail {
     this.description = description;
   }
 
-  public float getRating() {
+  public Float getRating() {
     return rating;
   }
 
-  public void setRating(float rating) {
+  public void setRating(Float rating) {
     this.rating = rating;
   }
 
@@ -79,12 +78,12 @@ public class Trail {
     return created;
   }
 
-  public boolean isPublic() {
-    return isPublic;
+  public Boolean isTrailPublic() {
+    return trailPublic;
   }
 
-  public void setPublic(boolean aPublic) {
-    isPublic = aPublic;
+  public void setTrailPublic(boolean trailPublic) {
+    this.trailPublic = trailPublic;
   }
 
   public User getCreator() {
@@ -93,10 +92,6 @@ public class Trail {
 
   public void setCreator(User creator) {
     this.creator = creator;
-  }
-
-  public void setRating(Float rating) {
-    this.rating = rating;
   }
 
   public String getImageUrl() {
