@@ -8,14 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
 @Entity(name = "user_info")
-
+@Table(
+    uniqueConstraints = { @UniqueConstraint(columnNames = {"username"}),
+                          @UniqueConstraint(columnNames = {"oauth"})},
+    indexes = {@Index(columnList = "created"), @Index(columnList = "user_name")}
+)
 public class User {
 
   @Id
@@ -29,6 +36,9 @@ public class User {
   @Column(updatable = false, nullable = false)
   private Date created;
 
+  private String userName;
+
+  private String oAuth;
   private String email;
 
   @OneToMany(mappedBy = "creator")
@@ -48,5 +58,29 @@ public class User {
 
   public Date getCreated() {
     return created;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getoAuth() {
+    return oAuth;
+  }
+
+  public void setoAuth(String oAuth) {
+    this.oAuth = oAuth;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 }
