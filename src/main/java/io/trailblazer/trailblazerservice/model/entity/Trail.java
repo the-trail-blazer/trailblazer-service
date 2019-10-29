@@ -1,10 +1,5 @@
 package io.trailblazer.trailblazerservice.model.entity;
 
-import com.bedatadriven.jackson.datatype.jts.serialization.GeometryDeserializer;
-import com.bedatadriven.jackson.datatype.jts.serialization.GeometrySerializer;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vividsolutions.jts.geom.LineString;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,11 +41,6 @@ public class Trail {
   @JoinColumn(name = "creator_id", updatable = false)
   private User creator;
 
-
-  @JsonSerialize(using = GeometrySerializer.class)
-  @JsonDeserialize(contentUsing = GeometryDeserializer.class)
-  @Column(name = "trail_path", columnDefinition = "linestring")
-  private LineString path;
 
 
   @Column(nullable = false)
@@ -109,11 +99,4 @@ public class Trail {
     this.imageUrl = imageUrl;
   }
 
-  public LineString getPath() {
-    return path;
-  }
-
-  public void setPath(LineString path) {
-    this.path = path;
-  }
 }
