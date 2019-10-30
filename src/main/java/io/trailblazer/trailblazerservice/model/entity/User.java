@@ -35,10 +35,13 @@ public class User {
   @Column(updatable = false, nullable = false)
   private Date created;
 
-  @Column(name = "user_name")
+  @Column(name = "user_name", length = 50)
   private String userName;
 
+  @Column(length = 50)
   private String oauth;
+
+  @Column(length = 200)
   private String email;
 
   @OneToMany(mappedBy = "creator")
