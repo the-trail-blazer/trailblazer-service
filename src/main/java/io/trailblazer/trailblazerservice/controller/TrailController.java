@@ -29,6 +29,7 @@ public class TrailController {
     this.trailRepository = trailRepository;
   }
 
+
   @GetMapping(value = "{id:}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Trail get(@PathVariable("id") Long id) {
     return trailRepository.findById(id).get();
