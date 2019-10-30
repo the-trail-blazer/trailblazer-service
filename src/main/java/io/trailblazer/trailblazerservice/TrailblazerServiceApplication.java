@@ -1,8 +1,10 @@
 package io.trailblazer.trailblazerservice;
 
+import com.bedatadriven.jackson.datatype.jts.JtsModule;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -36,5 +38,10 @@ public class TrailblazerServiceApplication extends ResourceServerConfigurerAdapt
 //    http.authorizeRequests().anyRequest().hasRole("USER");
   }
 
+
+  @Bean
+  public JtsModule jtsModule() {
+    return new JtsModule();
+  }
 
 }
