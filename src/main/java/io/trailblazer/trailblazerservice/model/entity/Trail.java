@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
@@ -29,7 +28,7 @@ public class Trail {
   @Column(name = "trail_id", nullable = false, unique = true)
   private Long id;
 
-  @ColumnDefault(value = "false")
+  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
   private boolean trailPublic;
 
   @CreationTimestamp
