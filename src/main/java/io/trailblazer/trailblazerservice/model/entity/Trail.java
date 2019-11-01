@@ -1,5 +1,10 @@
 package io.trailblazer.trailblazerservice.model.entity;
 
+import com.bedatadriven.jackson.datatype.jts.serialization.GeometryDeserializer;
+import com.bedatadriven.jackson.datatype.jts.serialization.GeometrySerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vividsolutions.jts.geom.Geometry;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,9 +23,10 @@ import org.springframework.lang.NonNull;
 
 @Entity
 @Table(
-    indexes = @Index(columnList ="date_created")
+    indexes = @Index(columnList = "date_created")
 )
 public class Trail {
+
 
   @NonNull
   @Id
@@ -42,15 +48,26 @@ public class Trail {
   @JoinColumn(name = "creator_id", updatable = false)
   private User creator;
 
-
+  @JsonSerialize(using = GeometrySerializer.class)
+  @JsonDeserialize(contentUsing = GeometryDeserializer.class)
+  @Column(columnDefinition = "geometry")
+  private Geometry geometry;
 
   @Column(nullable = false)
   private String name;
 
   private String description;
-
-
   private String imageUrl;
+
+  public Geometry getGeometry() {
+    return geometry;
+  }
+
+  public void setGeometry(Geometry geometry) {
+    System.out.println(geometry);
+    System.out.println("Trail.setGeometry");
+    this.geometry = geometry;
+  }
 
   public String getName() {
     return name;

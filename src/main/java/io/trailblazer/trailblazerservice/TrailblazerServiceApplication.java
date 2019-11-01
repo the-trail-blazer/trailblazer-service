@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -43,5 +44,13 @@ public class TrailblazerServiceApplication extends ResourceServerConfigurerAdapt
   public JtsModule jtsModule() {
     return new JtsModule();
   }
+
+  @Bean
+  public Jackson2ObjectMapperBuilder jacksonBuilder() {
+    Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+    builder.modulesToInstall(new JtsModule());
+    return builder;
+  }
+
 
 }

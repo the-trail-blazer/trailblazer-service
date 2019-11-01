@@ -35,8 +35,8 @@ public class TrailController {
     return trailRepository.findById(id).get();
   }
 
-  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Trail> post(@RequestBody Trail trail){
+  @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Trail> post(@RequestBody Trail trail) {
     trailRepository.save(trail);
     return ResponseEntity.accepted().body(trail);
   }
@@ -47,9 +47,9 @@ public class TrailController {
   }
 
 
-
   @ResponseStatus(HttpStatus.NOT_FOUND)
   @ExceptionHandler(NoSuchElementException.class)
-  public void notFound() {}
+  public void notFound() {
+  }
 
 }

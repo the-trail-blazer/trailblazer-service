@@ -30,12 +30,6 @@
     </dependency>
 
     <dependency>
-      <artifactId>derby</artifactId>
-      <groupId>org.apache.derby</groupId>
-      <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
       <groupId>org.springframework.boot</groupId>
     </dependency>
@@ -43,6 +37,7 @@
       <artifactId>spring-boot-starter-security</artifactId>
       <groupId>org.springframework.boot</groupId>
     </dependency>
+
     <dependency>
       <artifactId>spring-security-oauth2</artifactId>
       <groupId>org.springframework.security.oauth</groupId>
@@ -72,12 +67,25 @@
       <version>2.4</version>
     </dependency>
 
+    <dependency>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <groupId>org.hibernate</groupId>
+      <version>5.2.12.Final</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>hibernate-spatial</artifactId>
+      <groupId>org.hibernate</groupId>
+      <version>5.2.12.Final</version>
+    </dependency>
+
 
   </dependencies>
-  <description>Demo project for Spring Boot</description>
+  <description>trail blazer service project</description>
   <groupId>io.trailblazer</groupId>
   <modelVersion>4.0.0</modelVersion>
   <name>trailblazer-service</name>
+
 
   <parent>
     <artifactId>spring-boot-starter-parent</artifactId>
