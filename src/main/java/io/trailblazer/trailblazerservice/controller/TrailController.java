@@ -3,11 +3,13 @@ package io.trailblazer.trailblazerservice.controller;
 
 import io.trailblazer.trailblazerservice.model.dao.TrailRepository;
 import io.trailblazer.trailblazerservice.model.entity.Trail;
+import io.trailblazer.trailblazerservice.model.entity.User;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/trails")
 public class TrailController {
 
-  final private TrailRepository trailRepository;
+  private final TrailRepository trailRepository;
 
 
   @Autowired
@@ -31,19 +33,21 @@ public class TrailController {
 
 
   @GetMapping(value = "{id:}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Trail get(@PathVariable("id") Long id) {
-    return trailRepository.findById(id).get();
+  public Trail get(@PathVariable("id") Long id, Authentication authentication) {
+    return trailRepository.getTrailByCreatorAndId(authentication.getPrincipal(), id).get();
   }
 
-  @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Trail> post(@RequestBody Trail trail) {
+
     trailRepository.save(trail);
+
     return ResponseEntity.accepted().body(trail);
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public Iterable<Trail> getAll() {
-    return trailRepository.getAllByOrderByIdAsc();
+  public Iterable<Trail> getAll(Authentication authentication) {
+    return trailRepository.getAllByCreatorOrderByIdAsc((User) authentication.getPrincipal());
   }
 
 

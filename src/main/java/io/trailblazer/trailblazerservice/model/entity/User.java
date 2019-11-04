@@ -17,9 +17,9 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
-@Entity(name = "user_info")
+@Entity(name = "AuthenticatedUser")
 @Table(uniqueConstraints = {  @UniqueConstraint(columnNames = {"user_name"}),
-                              @UniqueConstraint(columnNames = {"oauth"}),
+    @UniqueConstraint(columnNames = {"oauth_key"}),
                               @UniqueConstraint(columnNames = {"email"}) },
         indexes = {@Index(columnList = "created"), @Index(columnList = "user_name")})
 public class User {
@@ -38,8 +38,9 @@ public class User {
   @Column(name = "user_name", length = 50)
   private String userName;
 
-  @Column(length = 50)
-  private String oauth;
+  @NonNull
+  @Column(name = "oauth_key", nullable = false, updatable = false, unique = true)
+  private String oauthKey;
 
   @Column(length = 200)
   private String email;
@@ -47,18 +48,11 @@ public class User {
   @OneToMany(mappedBy = "creator")
   private List<Trail> authored = new ArrayList<>();
 
-  public List<Trail> getAuthored() {
-    return authored;
-  }
-
-  public void setAuthored(List<Trail> authored) {
-    this.authored = authored;
-  }
-
   public Long getId() {
     return id;
   }
 
+  @NonNull
   public Date getCreated() {
     return created;
   }
@@ -71,12 +65,13 @@ public class User {
     this.userName = userName;
   }
 
-  public String getOauth() {
-    return oauth;
+  @NonNull
+  public String getOauthKey() {
+    return oauthKey;
   }
 
-  public void setOauth(String oauth) {
-    this.oauth = oauth;
+  public void setOauthKey(@NonNull String oauthKey) {
+    this.oauthKey = oauthKey;
   }
 
   public String getEmail() {
@@ -85,5 +80,13 @@ public class User {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public List<Trail> getAuthored() {
+    return authored;
+  }
+
+  public void setAuthored(List<Trail> authored) {
+    this.authored = authored;
   }
 }

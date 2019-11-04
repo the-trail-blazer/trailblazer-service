@@ -64,8 +64,6 @@ public class Trail {
   }
 
   public void setGeometry(Geometry geometry) {
-    System.out.println(geometry);
-    System.out.println("Trail.setGeometry");
     this.geometry = geometry;
   }
 
