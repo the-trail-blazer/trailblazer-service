@@ -1,5 +1,6 @@
 package io.trailblazer.trailblazerservice.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.springframework.lang.NonNull;
 
 @Entity
 public class Content {
@@ -17,16 +19,20 @@ public class Content {
   @Column(name = "content_id", updatable = false, nullable = false)
   private Long id;
 
+  @NonNull
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "user_id", updatable = false)
+  @JoinColumn(name = "user_id", updatable = false, nullable = false)
   private User creator;
 
+  @NonNull
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "trail_id", updatable = false)
+  @JoinColumn(name = "trail_id", updatable = false, nullable = false)
   private Trail trail;
 
+  @JsonIgnore
   private String imageUrl;
 
+  @Column
   private String text;
 
   private String action;

@@ -33,7 +33,6 @@ public class Grant {
   @JoinColumn(name = "trail_id", updatable = false)
   private Trail trail;
 
-
   @CreationTimestamp
   @NonNull
   @Temporal(TemporalType.TIMESTAMP)

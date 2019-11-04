@@ -12,4 +12,5 @@ public interface TrailRepository extends CrudRepository<Trail, Long> {
 
   Optional<Trail> getTrailByCreatorAndId(Object user, Long key);
 
+//  Optional<Trail> getTrailBy
 }

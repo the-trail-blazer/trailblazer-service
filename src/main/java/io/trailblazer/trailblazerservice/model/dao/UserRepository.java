@@ -8,4 +8,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
   Optional<User> getUserByOauthKey(String oauthKey);
 
+
 }

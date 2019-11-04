@@ -18,10 +18,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
 @Entity(name = "AuthenticatedUser")
-@Table(uniqueConstraints = {  @UniqueConstraint(columnNames = {"user_name"}),
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"user_name"}),
     @UniqueConstraint(columnNames = {"oauth_key"}),
-                              @UniqueConstraint(columnNames = {"email"}) },
-        indexes = {@Index(columnList = "created"), @Index(columnList = "user_name")})
+    @UniqueConstraint(columnNames = {"email"})},
+    indexes = {@Index(columnList = "created"),
+        @Index(columnList = "user_name")})
 public class User {
 
   @Id
