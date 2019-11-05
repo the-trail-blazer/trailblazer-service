@@ -38,16 +38,18 @@ public class TrailController {
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Trail> post(@RequestBody Trail trail) {
+  public ResponseEntity<Trail> post(@RequestBody Trail trail, Authentication auth) {
 
+    trail.setCreator((User) auth.getPrincipal());
     trailRepository.save(trail);
-
     return ResponseEntity.accepted().body(trail);
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public Iterable<Trail> getAll(Authentication authentication) {
-    return trailRepository.getAllByCreatorOrderByIdAsc((User) authentication.getPrincipal());
+//    return trailRepository.getTrailByCreatorOrTrailPublicIsTrue(((User) authentication.getPrincipal()));
+    return trailRepository.getAllByPublicOrUser(((User) authentication.getPrincipal()).getId());
+
   }
 
 

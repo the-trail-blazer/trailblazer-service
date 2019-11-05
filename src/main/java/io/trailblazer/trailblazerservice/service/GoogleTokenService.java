@@ -55,7 +55,7 @@ public class GoogleTokenService implements ResourceServerTokenServices {
       if (idToken != null) {
         Payload payload = idToken.getPayload();
 
-        User user = userService.getOrCreateUser(payload.getSubject());
+        User user = userService.getOrCreateUser(payload);
         Collection<GrantedAuthority> grants =
             Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
         Authentication base =

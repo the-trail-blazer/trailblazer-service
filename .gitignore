@@ -33,3 +33,4 @@ build/
 trails_db
 derby.log
 
+api.properties

@@ -5,6 +5,7 @@ import com.bedatadriven.jackson.datatype.jts.serialization.GeometrySerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Geometry;
+import io.trailblazer.trailblazerservice.view.FlattenUser;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,6 +47,7 @@ public class Trail {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "creator_id", updatable = false)
+  @JsonSerialize(as = FlattenUser.class)
   private User creator;
 
   @JsonSerialize(using = GeometrySerializer.class)

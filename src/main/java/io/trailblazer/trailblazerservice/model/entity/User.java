@@ -1,10 +1,12 @@
 package io.trailblazer.trailblazerservice.model.entity;
 
+import io.trailblazer.trailblazerservice.view.FlattenUser;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,7 @@ import org.springframework.lang.NonNull;
     @UniqueConstraint(columnNames = {"email"})},
     indexes = {@Index(columnList = "created"),
         @Index(columnList = "user_name")})
-public class User {
+public class User implements FlattenUser {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,7 +49,7 @@ public class User {
   @Column(length = 200)
   private String email;
 
-  @OneToMany(mappedBy = "creator")
+  @OneToMany(mappedBy = "creator", fetch = FetchType.EAGER)
   private List<Trail> authored = new ArrayList<>();
 
   public Long getId() {
@@ -88,7 +90,4 @@ public class User {
     return authored;
   }
 
-  public void setAuthored(List<Trail> authored) {
-    this.authored = authored;
-  }
 }

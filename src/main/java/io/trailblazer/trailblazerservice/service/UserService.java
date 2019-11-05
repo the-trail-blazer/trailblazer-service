@@ -1,5 +1,6 @@
 package io.trailblazer.trailblazerservice.service;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import io.trailblazer.trailblazerservice.model.dao.UserRepository;
 import io.trailblazer.trailblazerservice.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,13 @@ public class UserService {
   }
 
 
-  public User getOrCreateUser(String oauthKey) {
+  public User getOrCreateUser(Payload payload) {
+    String oauthKey = payload.getSubject();
     return repository.getUserByOauthKey(oauthKey)
         .orElseGet(() -> {
           User user = new User();
           user.setOauthKey(oauthKey);
+          user.setEmail(payload.getEmail());
           return repository.save(user);
         });
 
