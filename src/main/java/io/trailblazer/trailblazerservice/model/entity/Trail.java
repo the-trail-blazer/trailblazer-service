@@ -35,7 +35,7 @@ public class Trail {
   @Column(name = "trail_id", nullable = false, unique = true)
   private Long id;
 
-  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+  @Column(name = "trail_public", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
   private boolean trailPublic;
 
   @CreationTimestamp

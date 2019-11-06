@@ -37,6 +37,13 @@ public class TrailController {
     return trailRepository.getTrailByCreatorAndId(authentication.getPrincipal(), id).get();
   }
 
+  @GetMapping(value = "{trailName:}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<Trail> get(@PathVariable("trailName") String name,
+      Authentication authentication) {
+    return trailRepository.getTrailByName(name);
+  }
+
+
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Trail> post(@RequestBody Trail trail, Authentication auth) {
 
@@ -47,9 +54,7 @@ public class TrailController {
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public Iterable<Trail> getAll(Authentication authentication) {
-//    return trailRepository.getTrailByCreatorOrTrailPublicIsTrue(((User) authentication.getPrincipal()));
     return trailRepository.getAllByPublicOrUser(((User) authentication.getPrincipal()).getId());
-
   }
 
 
@@ -57,5 +62,6 @@ public class TrailController {
   @ExceptionHandler(NoSuchElementException.class)
   public void notFound() {
   }
+
 
 }
