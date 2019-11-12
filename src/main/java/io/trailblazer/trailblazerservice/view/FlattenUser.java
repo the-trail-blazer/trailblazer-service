@@ -1,7 +1,12 @@
 package io.trailblazer.trailblazerservice.view;
 
 
-public interface FlattenUser {
+import java.net.URI;
 
+public interface FlattenUser {
   String getUserName();
+
+  String getEmail();
+
+  URI getHref();
 }

@@ -2,12 +2,12 @@ package io.trailblazer.trailblazerservice.model.entity;
 
 import com.bedatadriven.jackson.datatype.jts.serialization.GeometryDeserializer;
 import com.bedatadriven.jackson.datatype.jts.serialization.GeometrySerializer;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Geometry;
 import io.trailblazer.trailblazerservice.view.FlattenTrail;
-import io.trailblazer.trailblazerservice.view.FlattenUser;
+import io.trailblazer.trailblazerservice.view.TrailGeometry;
+import io.trailblazer.trailblazerservice.view.UserName;
 import java.net.URI;
 import java.util.Date;
 import javax.annotation.PostConstruct;
@@ -35,11 +35,10 @@ import org.springframework.stereotype.Component;
     indexes = @Index(columnList = "date_created"),
     uniqueConstraints = {@UniqueConstraint(columnNames = {"creator_id", "trail_name"})}
 )
-@JsonSerialize(as = FlattenTrail.class)
 @Component
-@JsonIgnoreProperties(value = {"created", "updated", "href", "teams"},
-    allowGetters = true, ignoreUnknown = true)
-public class Trail implements FlattenTrail {
+//@JsonIgnoreProperties(value = {"created", "updated", "href"},
+//    allowGetters = true, ignoreUnknown = true)
+public class Trail implements FlattenTrail, TrailGeometry {
 
   private static EntityLinks links;
 
@@ -61,8 +60,8 @@ public class Trail implements FlattenTrail {
 
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "creator_id", updatable = false, nullable = true)
-  @JsonSerialize(as = FlattenUser.class)
+  @JoinColumn(name = "creator_id", updatable = false)
+  @JsonSerialize(as = UserName.class)
   private User creator;
 
   @JsonSerialize(using = GeometrySerializer.class)
@@ -76,6 +75,7 @@ public class Trail implements FlattenTrail {
   private String description;
 
   private String imageUrl;
+
 
   public Geometry getGeometry() {
     return geometry;

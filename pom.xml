@@ -8,7 +8,25 @@
       <plugin>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <groupId>org.springframework.boot</groupId>
+        <configuration>
+          <layout>JAR</layout>
+          <mainClass>io.trailblazer.trailblazerservice.TrailblazerServiceApplication</mainClass>
+        </configuration>
       </plugin>
+
+      <plugin>
+        <!-- Build an executable JAR -->
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>io.trailblazer.trailblazerservice.TrailblazerServiceApplication</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+      </plugin>
+
     </plugins>
   </build>
   <dependencies>

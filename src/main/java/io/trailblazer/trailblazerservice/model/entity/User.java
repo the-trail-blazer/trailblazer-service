@@ -1,14 +1,18 @@
 package io.trailblazer.trailblazerservice.model.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.trailblazer.trailblazerservice.view.FlattenUser;
+import io.trailblazer.trailblazerservice.view.UserName;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.OneToMany;
@@ -17,21 +21,31 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
-@Entity(name = "AuthenticatedUser")
+@Component
+@Entity(name = "authenticated_user")
 @Table(uniqueConstraints = {
     @UniqueConstraint(columnNames = {"user_name"}),
     @UniqueConstraint(columnNames = {"oauth_key"}),
     @UniqueConstraint(columnNames = {"email"})},
     indexes = {@Index(columnList = "created"),
         @Index(columnList = "user_name")})
-public class User implements FlattenUser {
+@JsonSerialize(as = FlattenUser.class)
+public class User implements FlattenUser, UserName {
+
+  private static EntityLinks links;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user_id", updatable = false, nullable = false)
-  private Long id;
+  @GeneratedValue(generator = "uuid2")
+  @GenericGenerator(name = "uuid2", strategy = "uuid2")
+  @Column(name = "user_id", columnDefinition = "BINARY(16)",
+      nullable = false, updatable = false)
+  private UUID id;
 
   @CreationTimestamp
   @NonNull
@@ -52,7 +66,7 @@ public class User implements FlattenUser {
   @OneToMany(mappedBy = "creator", fetch = FetchType.EAGER)
   private List<Trail> authored = new ArrayList<>();
 
-  public Long getId() {
+  public UUID getId() {
     return id;
   }
 
@@ -89,5 +103,21 @@ public class User implements FlattenUser {
   public List<Trail> getAuthored() {
     return authored;
   }
+
+  public URI getHref() {
+    return links.linkForSingleResource(User.class, id).toUri();
+  }
+
+  @PostConstruct
+  private void initLinks() {
+    String ignore = links.toString();
+  }
+
+  @Autowired
+  public void setLinks(EntityLinks links) {
+    User.links = links;
+  }
+
+
 
 }

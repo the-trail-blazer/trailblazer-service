@@ -16,7 +16,6 @@ public class UserService {
     this.repository = repository;
   }
 
-
   public User getOrCreateUser(Payload payload) {
     String oauthKey = payload.getSubject();
     return repository.getUserByOauthKey(oauthKey)
@@ -26,7 +25,6 @@ public class UserService {
           user.setEmail(payload.getEmail());
           return repository.save(user);
         });
-
   }
 
 

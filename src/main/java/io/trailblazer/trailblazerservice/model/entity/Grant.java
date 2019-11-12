@@ -15,8 +15,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name = "visibility_grant",
-        indexes = {@Index(columnList = "created")}
+@Table(name = "visibility_grant", indexes = {@Index(columnList = "created")}
 )
 public class Grant {
 
