@@ -2,7 +2,7 @@ package io.trailblazer.trailblazerservice.model.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.trailblazer.trailblazerservice.view.FlattenUser;
-import io.trailblazer.trailblazerservice.view.UserName;
+import io.trailblazer.trailblazerservice.view.Username;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +36,7 @@ import org.springframework.stereotype.Component;
     indexes = {@Index(columnList = "created"),
         @Index(columnList = "user_name")})
 @JsonSerialize(as = FlattenUser.class)
-public class User implements FlattenUser, UserName {
+public class User implements FlattenUser, Username {
 
   private static EntityLinks links;
 
@@ -54,7 +54,7 @@ public class User implements FlattenUser, UserName {
   private Date created;
 
   @Column(name = "user_name", length = 50)
-  private String userName;
+  private String username;
 
   @NonNull
   @Column(name = "oauth_key", nullable = false, updatable = false, unique = true)
@@ -75,12 +75,12 @@ public class User implements FlattenUser, UserName {
     return created;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String userName) {
+    this.username = userName;
   }
 
   @NonNull

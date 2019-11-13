@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Geometry;
 import io.trailblazer.trailblazerservice.view.FlattenTrail;
 import io.trailblazer.trailblazerservice.view.TrailGeometry;
-import io.trailblazer.trailblazerservice.view.UserName;
+import io.trailblazer.trailblazerservice.view.Username;
 import java.net.URI;
 import java.util.Date;
 import javax.annotation.PostConstruct;
@@ -61,7 +61,7 @@ public class Trail implements FlattenTrail, TrailGeometry {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "creator_id", updatable = false)
-  @JsonSerialize(as = UserName.class)
+  @JsonSerialize(as = Username.class)
   private User creator;
 
   @JsonSerialize(using = GeometrySerializer.class)

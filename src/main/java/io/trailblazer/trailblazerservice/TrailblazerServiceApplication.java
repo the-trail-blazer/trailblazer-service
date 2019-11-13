@@ -35,8 +35,10 @@ public class TrailblazerServiceApplication extends ResourceServerConfigurerAdapt
   @Override
   public void configure(HttpSecurity http) throws Exception {
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    http.authorizeRequests().anyRequest().permitAll();
-//    http.authorizeRequests().anyRequest().hasRole("USER");
+    http.authorizeRequests()
+        .antMatchers("/trails/public/**").permitAll()
+        .antMatchers("/trails/search/**").permitAll()
+        .anyRequest().hasRole("USER");
   }
 
 

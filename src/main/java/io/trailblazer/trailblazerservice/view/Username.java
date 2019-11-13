@@ -1,6 +1,6 @@
 package io.trailblazer.trailblazerservice.view;
 
-public interface UserName {
+public interface Username {
 
-  String getUserName();
+  String getUsername();
 }

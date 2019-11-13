@@ -39,8 +39,8 @@ public class UserController {
   public User updateUser(@RequestBody User user, Authentication authentication) {
     User userFromRepo = userRepository
         .getUserByOauthKey(((User) authentication.getPrincipal()).getOauthKey()).get();
-    if (user.getUserName() != null) {
-      userFromRepo.setUserName(user.getUserName());
+    if (user.getUsername() != null) {
+      userFromRepo.setUsername(user.getUsername());
       userRepository.save(userFromRepo);
     }
     return userFromRepo;

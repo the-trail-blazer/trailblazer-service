@@ -51,13 +51,28 @@ public class TrailController {
   }
 
   @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Iterable<Trail>> get(@RequestParam("name") String name,
+  public ResponseEntity<Iterable<Trail>> get(
+      @RequestParam(value = "public", defaultValue = "true", required = false) boolean isPublic,
+      @RequestParam("name") String name,
       Authentication authentication) {
-    Iterable<Trail> trail = trailRepository
-        .getAllByCreatorAndNameContains(((User) authentication.getPrincipal()), name);
-    return ResponseEntity.accepted().body(trail);
+    Iterable<Trail> trails;
+    if (isPublic) {
+      trails = trailRepository
+          .getAllByTrailPublicIsTrueAndNameContains(name);
+    } else {
+      trails = trailRepository
+          .getAllByCreatorAndTrailPublicIsTrueAndNameContains(
+              ((User) authentication.getPrincipal()), name);
+    }
+    return ResponseEntity.accepted().body(trails);
   }
 
+  @GetMapping(value = "/mytrails", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Iterable<Trail>> get(Authentication authentication) {
+    Iterable<Trail> trails = trailRepository.getAllByCreatorOrderByIdAsc(
+        (User) authentication.getPrincipal());
+    return ResponseEntity.accepted().body(trails);
+  }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Trail> post(@RequestBody Trail trail, Authentication auth) {
@@ -72,11 +87,11 @@ public class TrailController {
     return trailRepository.getAllByPublicOrUser(((User) authentication.getPrincipal()).getId());
   }
 
+
   @GetMapping(value = "/public", produces = MediaType.APPLICATION_JSON_VALUE)
   public Iterable<Trail> getAll() {
     return trailRepository.getAllByTrailPublicIsTrue();
   }
-
 
 
   @ResponseStatus(HttpStatus.NOT_FOUND)
