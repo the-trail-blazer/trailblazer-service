@@ -1,0 +1,6 @@
+io.trailblazer.trailblazerservice
+io.trailblazer.trailblazerservice.controller
+io.trailblazer.trailblazerservice.model.dao
+io.trailblazer.trailblazerservice.model.entity
+io.trailblazer.trailblazerservice.service
+io.trailblazer.trailblazerservice.view
