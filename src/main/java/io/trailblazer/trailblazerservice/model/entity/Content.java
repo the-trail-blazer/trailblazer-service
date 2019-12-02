@@ -1,6 +1,7 @@
 package io.trailblazer.trailblazerservice.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +21,7 @@ public class Content {
   private Long id;
 
   @NonNull
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "user_id", updatable = false, nullable = false)
   private User creator;
 

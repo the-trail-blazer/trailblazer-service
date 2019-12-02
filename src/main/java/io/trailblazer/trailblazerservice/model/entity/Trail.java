@@ -11,6 +11,7 @@ import io.trailblazer.trailblazerservice.view.Username;
 import java.net.URI;
 import java.util.Date;
 import javax.annotation.PostConstruct;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,7 +60,7 @@ public class Trail implements FlattenTrail, TrailGeometry {
   private Date created;
 
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "creator_id", updatable = false)
   @JsonSerialize(as = Username.class)
   private User creator;

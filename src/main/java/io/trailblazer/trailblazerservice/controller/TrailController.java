@@ -52,18 +52,21 @@ public class TrailController {
 
   /**
    * Gets a trail by ID
-   * @param id of the corresponding trail.
+   *
+   * @param id             of the corresponding trail.
    * @param authentication {@link Authentication} token received from Google.
    * @return A {@link Trail} the authenticated user is available.
    */
   @GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Trail get(@PathVariable("id") Long id, Authentication authentication) {
-    return trailRepository.getTrailByCreatorAndId((User) authentication.getPrincipal(), id).get();
+
+    return trailRepository.findById(id).get();
   }
 
   /**
    * Gets a trail's geometries, requires identification.
-   * @param id corresponding to a trail.
+   *
+   * @param id             corresponding to a trail.
    * @param authentication Google authentication token.
    * @return {@link Geometry} a GeoJson object.
    */
@@ -74,9 +77,12 @@ public class TrailController {
   }
 
   /**
-   * Get requests mapped by search. Rest endpoint is "/trails/search?public={@link boolean}&name={trail name containing}
-   * @param isPublic {@link boolean} value, default is true.
-   * @param name {@link String} search parameter indicating a portion of the trail name being searched for.
+   * Get requests mapped by search. Rest endpoint is "/trails/search?public={@link
+   * boolean}&name={trail name containing}
+   *
+   * @param isPublic       {@link boolean} value, default is true.
+   * @param name           {@link String} search parameter indicating a portion of the trail name
+   *                       being searched for.
    * @param authentication {@link Authentication} google athentication token.
    * @return {@link Iterable<Trail>} A list of trails matching the search queries by the user.
    */
@@ -100,6 +106,7 @@ public class TrailController {
 
   /**
    * Get request for the users' created trails
+   *
    * @param authentication token from google
    * @return {@link ResponseEntity<Iterable<Trail>>} of {@link User}'s trails.
    */
@@ -112,8 +119,9 @@ public class TrailController {
 
   /**
    * Adds a trail to the database via post request.
+   *
    * @param trail request body contains a {@link Trail} requires a unique trail name to the user.
-   * @param auth {@link Authentication} Google authentication token.
+   * @param auth  {@link Authentication} Google authentication token.
    * @return {@link ResponseEntity<Trail>} containing the server's response.
    */
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -126,6 +134,7 @@ public class TrailController {
 
   /**
    * Get request for all the {@link Trail} available to the {@link User}
+   *
    * @param authentication {@link Authentication} A google authentication token.
    * @return {@link Iterable<Trail>} All Trails available to the {@link User}.
    */
@@ -136,6 +145,7 @@ public class TrailController {
 
   /**
    * Gets all public {@link Trail}
+   *
    * @return {@link Iterable<Trail>} public trails.
    */
   @GetMapping(value = "/public", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -151,5 +161,9 @@ public class TrailController {
   public void notFound() {
   }
 
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(Exception.class)
+  public void badRequest() {
+  }
 
 }

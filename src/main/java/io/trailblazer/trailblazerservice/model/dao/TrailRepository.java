@@ -14,6 +14,8 @@ public interface TrailRepository extends CrudRepository<Trail, Long> {
 
   Optional<Trail> getTrailByCreatorAndId(User user, Long key);
 
+  Optional<Trail> getTrailByIdAndTrailPublicIsTrue(Long key);
+
   Iterable<Trail> getAllByCreatorAndTrailPublicIsTrueAndNameContains(User user, String name);
 
   Iterable<Trail> getAllByTrailPublicIsTrueAndNameContains(String name);

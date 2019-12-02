@@ -75,6 +75,7 @@ public class User implements FlattenUser, Username {
     return created;
   }
 
+
   public String getUsername() {
     return username;
   }
