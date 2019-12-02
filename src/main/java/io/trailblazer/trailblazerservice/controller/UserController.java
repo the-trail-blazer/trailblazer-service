@@ -46,8 +46,7 @@ public class UserController {
   }
 
 
-  @GetMapping(path = "/stats",
-      produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public UserCharacteristics getCharacteristics(Authentication authentication) {
     User user = userRepository
         .getUserByOauthKey(((User) authentication.getPrincipal()).getOauthKey())
@@ -58,14 +57,15 @@ public class UserController {
   }
 
 
-  @PutMapping(path = "/stats", produces = MediaType.APPLICATION_JSON_VALUE,
+  @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
       consumes = MediaType.APPLICATION_JSON_VALUE)
   public UserCharacteristics updateUser(Authentication authentication,
       UserCharacteristics userCharacteristics) {
     User user = userRepository
         .getUserByOauthKey((((User) authentication.getPrincipal())).getOauthKey()).get();
 
-    if (userCharacteristics.getUser() != null) {
+    if (userCharacteristics.getUser() != null
+        && userCharacteristics.getUser().getUsername() != null) {
       user.setUsername(userCharacteristics.getUser().getUsername());
       userRepository.save(user);
     }

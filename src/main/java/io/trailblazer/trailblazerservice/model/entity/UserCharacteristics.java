@@ -1,6 +1,7 @@
 package io.trailblazer.trailblazerservice.model.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.trailblazer.trailblazerservice.view.Username;
 import java.util.Date;
@@ -44,6 +45,7 @@ public class UserCharacteristics implements Username {
   private Date created = new Date();
 
   @Temporal(TemporalType.TIMESTAMP)
+  @JsonIgnore
   private Date updated = new Date();
 
   private Double weightLbs;
