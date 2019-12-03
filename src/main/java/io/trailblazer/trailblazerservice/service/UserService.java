@@ -1,3 +1,8 @@
+/*
+ * This work is Copyright, 2019, Isaac Lindland, Joel Bond, Khizar Saleem, Justin Dominguez
+ * All rights reserved
+ */
+
 package io.trailblazer.trailblazerservice.service;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
