@@ -36,6 +36,9 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type of Trails.
+ */
 @Entity
 @Table(
     indexes = @Index(columnList = "date_created"),
@@ -87,6 +90,11 @@ public class Trail implements FlattenTrail, TrailGeometry {
     return geometry;
   }
 
+  /**
+   * Sets Trail geometry.
+   *
+   * @param geometry the geometry
+   */
   public void setGeometry(Geometry geometry) {
     this.geometry = geometry;
   }
@@ -95,6 +103,11 @@ public class Trail implements FlattenTrail, TrailGeometry {
     return name;
   }
 
+  /**
+   * Sets Trail name.
+   *
+   * @param name the name
+   */
   public void setName(String name) {
     this.name = name;
   }
@@ -103,6 +116,11 @@ public class Trail implements FlattenTrail, TrailGeometry {
     return description;
   }
 
+  /**
+   * Sets description.
+   *
+   * @param description the description
+   */
   public void setDescription(String description) {
     this.description = description;
   }
@@ -111,6 +129,11 @@ public class Trail implements FlattenTrail, TrailGeometry {
     return id;
   }
 
+  /**
+   * Gets created.
+   *
+   * @return the created
+   */
   public Date getCreated() {
     return created;
   }
@@ -119,22 +142,47 @@ public class Trail implements FlattenTrail, TrailGeometry {
     return trailPublic;
   }
 
+  /**
+   * Sets trail public.
+   *
+   * @param trailPublic the trail public
+   */
   public void setTrailPublic(boolean trailPublic) {
     this.trailPublic = trailPublic;
   }
 
+  /**
+   * Gets creator.
+   *
+   * @return the creator
+   */
   public User getCreator() {
     return creator;
   }
 
+  /**
+   * Sets creator.
+   *
+   * @param creator the creator
+   */
   public void setCreator(User creator) {
     this.creator = creator;
   }
 
+  /**
+   * Gets image url.
+   *
+   * @return the image url
+   */
   public String getImageUrl() {
     return imageUrl;
   }
 
+  /**
+   * Sets image url.
+   *
+   * @param imageUrl the image url
+   */
   public void setImageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
   }
@@ -149,6 +197,11 @@ public class Trail implements FlattenTrail, TrailGeometry {
     String ignore = links.toString();
   }
 
+  /**
+   * Sets links.
+   *
+   * @param links the links
+   */
   @Autowired
   public void setLinks(EntityLinks links) {
     Trail.links = links;

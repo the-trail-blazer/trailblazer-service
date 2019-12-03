@@ -5,6 +5,9 @@
 
 package io.trailblazer.trailblazerservice.model.entity;
 
+/**
+ * The type of Image.
+ */
 public class Image {
 
 }
