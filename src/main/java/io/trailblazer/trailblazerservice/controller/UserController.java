@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type User controller.
+ */
 @RestController
 @RequestMapping("/user")
 @ExposesResourceFor(User.class)
@@ -34,6 +37,13 @@ public class UserController {
   private final UserCharacteristicsRepository characteristicsRepository;
   private final UserService userService;
 
+  /**
+   * Instantiates a new User controller.
+   *
+   * @param userRepository            autowired the user repository
+   * @param characteristicsRepository autowired the characteristics repository
+   * @param userService               autowired the user service
+   */
   @Autowired
   public UserController(UserRepository userRepository,
       UserCharacteristicsRepository characteristicsRepository,
@@ -44,6 +54,12 @@ public class UserController {
   }
 
 
+  /**
+   * Gets user.
+   *
+   * @param authentication the authentication
+   * @return the user
+   */
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public User get(Authentication authentication) {
     return userRepository.getUserByOauthKey(((User) authentication.getPrincipal()).getOauthKey())
@@ -51,6 +67,12 @@ public class UserController {
   }
 
 
+  /**
+   * Gets the user characteristics.
+   *
+   * @param authentication grants access to characteristics
+   * @return returns characteristics of user
+   */
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public UserCharacteristics getCharacteristics(Authentication authentication) {
     User user = userRepository
@@ -62,6 +84,13 @@ public class UserController {
   }
 
 
+  /**
+   * Update's the user characteristics.
+   *
+   * @param authentication      autowired the authentication
+   * @param userCharacteristics autowired the characteristics
+   * @return  returns the user characteristics
+   */
   @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
       consumes = MediaType.APPLICATION_JSON_VALUE)
   public UserCharacteristics updateUser(Authentication authentication,
@@ -79,6 +108,9 @@ public class UserController {
   }
 
 
+  /**
+   * Returns invalid username response.
+   */
   @ResponseStatus(HttpStatus.CONFLICT)
   @ExceptionHandler(ConstraintViolationException.class)
   void invalidUsername() {

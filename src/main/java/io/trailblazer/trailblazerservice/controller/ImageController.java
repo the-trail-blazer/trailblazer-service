@@ -9,6 +9,9 @@ package io.trailblazer.trailblazerservice.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Image controller.
+ */
 @RestController
 @RequestMapping("/images")
 public class ImageController {

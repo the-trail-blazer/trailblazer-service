@@ -13,12 +13,22 @@ import io.trailblazer.trailblazerservice.model.entity.UserCharacteristics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * The type User service.
+ */
 @Service
 public class UserService {
 
   private final UserRepository userRepository;
   private final UserCharacteristicsRepository userCharacteristicsRepository;
 
+  /**
+   * Instantiates a new User service.
+   *
+   * @param repository                    the repository
+   * @param userRepository                the user repository
+   * @param userCharacteristicsRepository the user characteristics repository
+   */
   @Autowired
   public UserService(UserRepository repository,
       UserRepository userRepository,
@@ -27,6 +37,12 @@ public class UserService {
     this.userCharacteristicsRepository = userCharacteristicsRepository;
   }
 
+  /**
+   * Gets or create user.
+   *
+   * @param payload the payload
+   * @return the or create user
+   */
   public User getOrCreateUser(Payload payload) {
     String oauthKey = payload.getSubject();
     return userRepository.getUserByOauthKey(oauthKey)

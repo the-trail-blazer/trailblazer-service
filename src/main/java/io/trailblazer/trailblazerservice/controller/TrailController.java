@@ -56,7 +56,7 @@ public class TrailController {
 
 
   /**
-   * Gets a trail by ID
+   * Gets a trail by ID.
    *
    * @param id             of the corresponding trail.
    * @param authentication {@link Authentication} token received from Google.
