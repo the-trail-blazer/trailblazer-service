@@ -19,6 +19,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
+/**
+ * The type Grant.
+ */
 @Entity
 @Table(name = "visibility_grant", indexes = {@Index(columnList = "created")}
 )
@@ -43,26 +46,56 @@ public class Grant {
   @Column(updatable = false, nullable = false)
   private Date created;
 
+  /**
+   * Gets grantee.
+   *
+   * @return the grantee
+   */
   public User getGrantee() {
     return grantee;
   }
 
+  /**
+   * Sets grantee.
+   *
+   * @param grantee the grantee
+   */
   public void setGrantee(User grantee) {
     this.grantee = grantee;
   }
 
+  /**
+   * Gets trail.
+   *
+   * @return the trail
+   */
   public Trail getTrail() {
     return trail;
   }
 
+  /**
+   * Sets trail.
+   *
+   * @param trail the trail
+   */
   public void setTrail(Trail trail) {
     this.trail = trail;
   }
 
+  /**
+   * Gets id.
+   *
+   * @return the id
+   */
   public Long getId() {
     return id;
   }
 
+  /**
+   * Gets created.
+   *
+   * @return the created
+   */
   public Date getCreated() {
     return created;
   }

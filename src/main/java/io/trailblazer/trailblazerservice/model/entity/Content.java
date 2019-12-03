@@ -17,6 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.springframework.lang.NonNull;
 
+/**
+ * The type of Content.
+ */
 @Entity
 public class Content {
 
@@ -43,46 +46,101 @@ public class Content {
 
   private String action;
 
+  /**
+   * Gets Content by id.
+   *
+   * @return the id
+   */
   public Long getId() {
     return id;
   }
 
+  /**
+   * Gets creator.
+   *
+   * @return the creator
+   */
   public User getCreator() {
     return creator;
   }
 
+  /**
+   * Gets trail.
+   *
+   * @return the trail
+   */
   public Trail getTrail() {
     return trail;
   }
 
+  /**
+   * Gets image url.
+   *
+   * @return the image url
+   */
   public String getImageUrl() {
     return imageUrl;
   }
 
+  /**
+   * Gets text.
+   *
+   * @return the text
+   */
   public String getText() {
     return text;
   }
 
+  /**
+   * Gets action.
+   *
+   * @return the action
+   */
   public String getAction() {
     return action;
   }
 
+  /**
+   * Sets creator.
+   *
+   * @param creator the creator
+   */
   public void setCreator(User creator) {
     this.creator = creator;
   }
 
+  /**
+   * Sets trail.
+   *
+   * @param trail the trail
+   */
   public void setTrail(Trail trail) {
     this.trail = trail;
   }
 
+  /**
+   * Sets image url.
+   *
+   * @param imageUrl the image url
+   */
   public void setImageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
   }
 
+  /**
+   * Sets text.
+   *
+   * @param text the text
+   */
   public void setText(String text) {
     this.text = text;
   }
 
+  /**
+   * Sets action.
+   *
+   * @param action the action
+   */
   public void setAction(String action) {
     this.action = action;
   }
