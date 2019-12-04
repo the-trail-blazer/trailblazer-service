@@ -37,7 +37,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 /**
- * The type of Trails.
+ * The types of trails.
  */
 @Entity
 @Table(
@@ -130,7 +130,7 @@ public class Trail implements FlattenTrail, TrailGeometry {
   }
 
   /**
-   * Gets created.
+   * Gets date created.
    *
    * @return the created
    */

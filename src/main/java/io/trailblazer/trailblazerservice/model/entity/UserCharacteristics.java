@@ -25,6 +25,9 @@ import javax.persistence.TemporalType;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * The User characteristics.
+ */
 @Component
 @Entity(name = "user_stats")
 @Table(uniqueConstraints = {
@@ -62,66 +65,146 @@ public class UserCharacteristics implements Username {
   private String lastName;
 
 
+  /**
+   * Gets id.
+   *
+   * @return the id
+   */
   public Long getId() {
     return Id;
   }
 
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
   public void setId(Long id) {
     Id = id;
   }
 
+  /**
+   * Gets user.
+   *
+   * @return the user
+   */
   public User getUser() {
     return user;
   }
 
+  /**
+   * Sets user.
+   *
+   * @param user the user
+   */
   public void setUser(User user) {
     this.user = user;
   }
 
+  /**
+   * Gets created.
+   *
+   * @return the created
+   */
   public Date getCreated() {
     return created;
   }
 
+  /**
+   * Sets created Date.
+   *
+   * @param created the created
+   */
   public void setCreated(Date created) {
     this.created = created;
   }
 
+  /**
+   * Gets updated Date.
+   *
+   * @return the updated
+   */
   public Date getUpdated() {
     return updated;
   }
 
+  /**
+   * Sets updated Date.
+   *
+   * @param updated the updated
+   */
   public void setUpdated(Date updated) {
     this.updated = updated;
   }
 
+  /**
+   * Gets weight in lbs.
+   *
+   * @return the weight in lbs
+   */
   public Double getWeightLbs() {
     return weightLbs;
   }
 
+  /**
+   * Sets weight in lbs.
+   *
+   * @param weightLbs the weight in lbs
+   */
   public void setWeightLbs(Double weightLbs) {
     this.weightLbs = weightLbs;
   }
 
+  /**
+   * Gets height in inches.
+   *
+   * @return the height in inches
+   */
   public Double getHeightInches() {
     return heightInches;
   }
 
+  /**
+   * Sets height in inches.
+   *
+   * @param heightFt the height ft
+   */
   public void setHeightInches(Double heightFt) {
     this.heightInches = heightFt;
   }
 
+  /**
+   * Gets first name.
+   *
+   * @return the first name
+   */
   public String getFirstName() {
     return firstName;
   }
 
+  /**
+   * Sets first name.
+   *
+   * @param firstName the first name
+   */
   public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
+  /**
+   * Gets last name.
+   *
+   * @return the last name
+   */
   public String getLastName() {
     return lastName;
   }
 
+  /**
+   * Sets last name.
+   *
+   * @param lastName the last name
+   */
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }

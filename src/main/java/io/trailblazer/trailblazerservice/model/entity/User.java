@@ -32,6 +32,9 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+/**
+ * The User.
+ */
 @Component
 @Entity(name = "authenticated_user")
 @Table(uniqueConstraints = {
@@ -71,10 +74,20 @@ public class User implements FlattenUser, Username {
   @OneToMany(mappedBy = "creator", fetch = FetchType.EAGER)
   private List<Trail> authored = new ArrayList<>();
 
+  /**
+   * Gets User id.
+   *
+   * @return the id
+   */
   public UUID getId() {
     return id;
   }
 
+  /**
+   * Gets Date created.
+   *
+   * @return the created
+   */
   @NonNull
   public Date getCreated() {
     return created;
@@ -85,15 +98,30 @@ public class User implements FlattenUser, Username {
     return username;
   }
 
+  /**
+   * Sets username.
+   *
+   * @param userName the user name
+   */
   public void setUsername(String userName) {
     this.username = userName;
   }
 
+  /**
+   * Gets oauth key.
+   *
+   * @return the oauth key
+   */
   @NonNull
   public String getOauthKey() {
     return oauthKey;
   }
 
+  /**
+   * Sets oauth key.
+   *
+   * @param oauthKey the oauth key
+   */
   public void setOauthKey(@NonNull String oauthKey) {
     this.oauthKey = oauthKey;
   }
@@ -102,10 +130,20 @@ public class User implements FlattenUser, Username {
     return email;
   }
 
+  /**
+   * Sets email.
+   *
+   * @param email the email
+   */
   public void setEmail(String email) {
     this.email = email;
   }
 
+  /**
+   * Gets authored.
+   *
+   * @return the authored
+   */
   public List<Trail> getAuthored() {
     return authored;
   }
@@ -119,6 +157,11 @@ public class User implements FlattenUser, Username {
     String ignore = links.toString();
   }
 
+  /**
+   * Sets links.
+   *
+   * @param links the links
+   */
   @Autowired
   public void setLinks(EntityLinks links) {
     User.links = links;
