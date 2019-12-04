@@ -7,8 +7,16 @@ package io.trailblazer.trailblazerservice.view;
 
 import com.vividsolutions.jts.geom.Geometry;
 
+/**
+ * The interface Trail geometry.
+ */
 public interface TrailGeometry {
 
+  /**
+   * Gets geometry.
+   *
+   * @return the geometry
+   */
   Geometry getGeometry();
 
 }

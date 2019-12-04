@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * The type User service.
+ * The User service.
  */
 @Service
 public class UserService {
@@ -38,7 +38,7 @@ public class UserService {
   }
 
   /**
-   * Gets or create user.
+   * Gets or create's user.
    *
    * @param payload the payload
    * @return the or create user

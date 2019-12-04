@@ -5,7 +5,15 @@
 
 package io.trailblazer.trailblazerservice.view;
 
+/**
+ * The interface Username.
+ */
 public interface Username {
 
+  /**
+   * Gets username.
+   *
+   * @return the username
+   */
   String getUsername();
 }

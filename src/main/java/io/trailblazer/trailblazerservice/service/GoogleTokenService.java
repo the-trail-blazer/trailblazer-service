@@ -36,6 +36,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * The Google token service.
+ */
 @Component
 public class GoogleTokenService implements ResourceServerTokenServices {
 
@@ -43,6 +46,12 @@ public class GoogleTokenService implements ResourceServerTokenServices {
   private final UserService userService;
   private final AccessTokenConverter converter = new DefaultAccessTokenConverter();
 
+  /**
+   * Instantiates a new Google token service.
+   *
+   * @param clientId    the client id
+   * @param userService the user service
+   */
   @Autowired
   public GoogleTokenService(@Value("${oauth.clientId}") String clientId,
       UserService userService) {
@@ -84,6 +93,9 @@ public class GoogleTokenService implements ResourceServerTokenServices {
   }
 
 
+  /**
+   * Bad credentials response.
+   */
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(Exception.class)
   public void badCredentials() {

@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 
+/**
+ * The type Trailblazer service application.
+ */
 @EnableResourceServer
 @EnableWebSecurity
 @SpringBootApplication
@@ -31,6 +34,11 @@ public class TrailblazerServiceApplication extends ResourceServerConfigurerAdapt
   private String clientId;
 
 
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
   public static void main(String[] args) {
     SpringApplication.run(TrailblazerServiceApplication.class, args);
   }
@@ -49,18 +57,30 @@ public class TrailblazerServiceApplication extends ResourceServerConfigurerAdapt
         .anyRequest().hasRole("USER");
   }
 
+  /**
+   * Bad request response.
+   */
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(Exception.class)
   public void badRequest() {
   }
 
 
-
+  /**
+   * Jts module jts module.
+   *
+   * @return the jts module
+   */
   @Bean
   public JtsModule jtsModule() {
     return new JtsModule();
   }
 
+  /**
+   * Jackson builder jackson 2 object mapper builder.
+   *
+   * @return the jackson 2 object mapper builder
+   */
   @Bean
   public Jackson2ObjectMapperBuilder jacksonBuilder() {
     Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
